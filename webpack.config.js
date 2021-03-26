@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
+const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 module.exports = {
   entry: {
@@ -13,6 +14,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: __dirname + "/dist",
+    publicPath: "/dist/",
   },
   module: {
     rules: [
@@ -33,6 +35,12 @@ module.exports = {
           {
             loader: "image-webpack-loader",
           },
+          {
+            loader: "file-loader",
+            options: {
+              esModule: false,
+            },
+          },
         ],
       },
     ],
@@ -44,6 +52,27 @@ module.exports = {
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: "static", // the report outputs to an HTML file in the dist folder
+    }),
+    new WebpackPwaManifest({
+      name: "Food Event",
+      short_name: "Foodies",
+      description: "An app that allows you to view upcoming food events.",
+      start_url: "../index.html",
+      background_color: "#01579b",
+      theme_color: "#ffffff",
+      fingerprints: false,
+      inject: false,
+      // map: (f) => {
+      //   f.path = f.path.replace(/^auto/, "");
+      //   return f;
+      // },
+      icons: [
+        {
+          src: path.resolve("assets/img/icons/icon-512x512.png"),
+          sizes: [96, 128, 192, 256, 384, 512],
+          destination: path.join("assets", "icons"),
+        },
+      ],
     }),
   ],
   mode: "development",

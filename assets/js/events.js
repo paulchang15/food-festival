@@ -7,6 +7,7 @@ if (window.location.href.indexOf("event") > -1) {
     subtitle: "",
     description: "",
   };
+  console.log("THIS IS THE", currentEvent);
 
   const pageEl = document.querySelector("#page");
 
