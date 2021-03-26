@@ -1,8 +1,7 @@
 require("bootstrap");
 const createEl = require("./domMethods");
-const createLoremIpsum = require("./helpers");
 
-$(document).ready(function () {
+if (window.location.href.indexOf("event") > -1) {
   const currentEvent = JSON.parse(localStorage.getItem("currentEvent")) || {
     title: "Title Placeholder",
     subtitle: "",
@@ -19,6 +18,7 @@ $(document).ready(function () {
       { class: "card mb-3" },
       createEl("img", {
         class: "card-img-top",
+        style: "width: 5px",
         src: currentEvent.image || "https://via.placeholder.com/350x150",
       }),
       createEl(
@@ -39,6 +39,5 @@ $(document).ready(function () {
       )
     )
   );
-
   pageEl.appendChild(containerEl);
-});
+}

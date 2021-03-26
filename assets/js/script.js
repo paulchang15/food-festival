@@ -21,9 +21,8 @@ $(document).ready(function () {
     },
   ];
 
-  if (window.location.href.indexOf("index") > -1) {
-    carouselSlides.forEach((slide, i) => {
-      $(".carousel-inner").append(`
+  carouselSlides.forEach((slide, i) => {
+    $(".carousel-inner").append(`
     <div class="carousel-item fullscreen-carousel" style="background-image: url('${slide.img}')">
       <div class="d-flex h-100 align-items-center justify-content-center carousel-caption">
           <div class="container">
@@ -41,6 +40,5 @@ $(document).ready(function () {
           </div>
       </div>
     </div>`);
-    });
-  }
+  });
 });
